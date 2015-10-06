@@ -8,7 +8,6 @@ var Server = require('karma').Server;
 gulp.task('buildApp', function(){
   return gulp.src('./src/js/**/*.js')
     .pipe(concat('app.js'))
-    .pipe(uglify())
     .pipe(gulp.dest('build'));
 });
 
@@ -17,7 +16,6 @@ gulp.task('buildVendor', function(){
       './bower_components/jquery/dist/jquery.min.js',
       './bower_components/**/*.min.js'])
     .pipe(concat('lib.js'))
-    .pipe(uglify())
     .pipe(gulp.dest('build'));
 });
 
@@ -26,7 +24,6 @@ gulp.task('buildCSS', function(){
       './bower_components/bootstrap/dist/css/bootstrap.css',
       './src/css/**/*.css'])
     .pipe(concat('styles.css'))
-    .pipe(uglify())
     .pipe(gulp.dest('build'));
 });
 
@@ -36,7 +33,7 @@ gulp.task('buildHTML', function(){
     .pipe(connect.reload());
 });
 
-gulp.task('build', ['buildApp', 'buildVendor', 'buildHTML']);
+gulp.task('build', ['buildApp', 'buildVendor', 'buildCSS', 'buildHTML']);
 
 
 gulp.task('karma', function (done) {

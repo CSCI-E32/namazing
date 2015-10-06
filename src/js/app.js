@@ -1,11 +1,23 @@
 var app = angular.module('namazing', []);
 
-app.directive('name', ['dateFilter', '$interval', function(dateFilter, $interval){
+app.directive('name', ['nameVal', function(name){
+
+  var nameVal = {
+    fname: "JaZahn",
+    lname: "Clevenger"
+  };
+
   var link = function(scope, element, attrs){
-    element.html = fname + " " + lname;
+    element.html(name.fname + " " + name.lname);
+    //element.html("something");
   };
 
   return {
     link: link
   };
 }]);
+
+app.value('nameVal', {
+  fname: "JaZahn",
+  lname: "Clevenger"
+});
